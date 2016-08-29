@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>453</width>
+    <height>421</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>453</width>
+    <height>421</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>453</width>
+    <height>421</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Lotka-Volterra Simulator</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/resources/print.png</normaloff>:/resources/print.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="startButton">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>370</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Start the simulation</string>
+    </property>
+    <property name="statusTip">
+     <string/>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>370</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Stop the simulation.</string>
+    </property>
+    <property name="statusTip">
+     <string/>
+    </property>
+    <property name="text">
+     <string>Stop</string>
+    </property>
+   </widget>
+   <widget class="QCustomPlot" name="canvas" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>431</width>
+      <height>251</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="settingsBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>431</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <widget class="QLabel" name="preyGrowthLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>70</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Growth of preys when there is too few predators.</string>
+     </property>
+     <property name="text">
+      <string>Prey Growth:</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="predatorGrowth">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>40</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Growth of predators for each prey</string>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::NoButtons</enum>
+     </property>
+     <property name="decimals">
+      <number>3</number>
+     </property>
+     <property name="maximum">
+      <double>99.998999999999995</double>
+     </property>
+    </widget>
+    <widget class="QLabel" name="preyDeathLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>65</y>
+       <width>70</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>How many prey die for each predator alive.</string>
+     </property>
+     <property name="text">
+      <string>Prey Death:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="predatorCountLabel">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>15</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>The number of predators.</string>
+     </property>
+     <property name="text">
+      <string>Predator Count:</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="preyCount">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>15</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>The initial number of prey</string>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::NoButtons</enum>
+     </property>
+     <property name="showGroupSeparator" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="decimals">
+      <number>0</number>
+     </property>
+     <property name="maximum">
+      <double>999999.000000000000000</double>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="preyGrowthCustom">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>40</y>
+       <width>55</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>custom</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="predatorGrowthLabel">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>40</y>
+       <width>91</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Addition of predators for each prey.</string>
+     </property>
+     <property name="text">
+      <string>Predator Growth:</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="predatorGrowthCustom">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>40</y>
+       <width>55</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>custom</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="predatorCount">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>15</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>The initial number of predators</string>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::NoButtons</enum>
+     </property>
+     <property name="decimals">
+      <number>0</number>
+     </property>
+     <property name="maximum">
+      <double>999999.000000000000000</double>
+     </property>
+    </widget>
+    <widget class="QLabel" name="preyCountLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>15</y>
+       <width>70</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>The number of prey.</string>
+     </property>
+     <property name="text">
+      <string>Prey Count:</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="predatorDeath">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>65</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>How many predators die when there is no prey</string>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::NoButtons</enum>
+     </property>
+     <property name="decimals">
+      <number>3</number>
+     </property>
+     <property name="maximum">
+      <double>99.998999999999995</double>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="preyCountCustom">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>15</y>
+       <width>55</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>custom</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="preyGrowth">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>40</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Growth of prey when there is too few predators</string>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::NoButtons</enum>
+     </property>
+     <property name="decimals">
+      <number>3</number>
+     </property>
+     <property name="maximum">
+      <double>99.998999999999995</double>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="predatorDeathCustom">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>65</y>
+       <width>55</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>custom</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="preyDeathCustom">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>65</y>
+       <width>55</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>custom</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="predatorDeathLabel">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>65</y>
+       <width>91</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>How many predators die when there are no preys.</string>
+     </property>
+     <property name="text">
+      <string>Predator Death:</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="preyDeath">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>65</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>How many prey die for each predator alive</string>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::NoButtons</enum>
+     </property>
+     <property name="decimals">
+      <number>3</number>
+     </property>
+     <property name="maximum">
+      <double>99.998999999999995</double>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="predatorCountCustom">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>15</y>
+       <width>55</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>custom</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>370</y>
+      <width>111</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Calculation time (ms):</string>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="delaySpinBox">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>370</y>
+      <width>62</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>How many milliseconds one round of calculation takes.</string>
+    </property>
+    <property name="minimum">
+     <double>0.010000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>10.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.100000000000000</double>
+    </property>
+   </widget>
+   <zorder>settingsBox</zorder>
+   <zorder>startButton</zorder>
+   <zorder>stopButton</zorder>
+   <zorder>canvas</zorder>
+   <zorder>label</zorder>
+   <zorder>delaySpinBox</zorder>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="sizeGripEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
